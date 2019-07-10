@@ -6,17 +6,16 @@
             </a>
         </h4>
         <div class="col-md-auto">
-            <span class="align-middle">
-            {{ article.createdAt|localizeddate('long', 'medium', null, 'UTC') }}
-            by <strong>{{ article.user.username }}</strong>
+            <small class="align-middle">
+            <i class="fa fa-calendar-alt text-black-50"></i> {{ article.createdAt|localizeddate('long', 'medium', null, 'UTC') }}
             {% if is_granted('is_my', article) %}
-                <a href="{{ path('article_edit', {slug: article.slug}) }}" class="btn btn-link btn-sm"><i class="fa fa-edit"></i></a>
+                <a href="{{ path('article_edit', {slug: article.slug}) }}" class="btn btn-link btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
                 <form action="{{ path('article_delete', {slug: article.slug}) }}" method="POST" class="delete-link" style="display: inline;">
                     <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
-                    <button type="submit" class="btn btn-link text-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    <button type="submit" class="btn btn-link text-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></button>
                 </form>
             {% endif %}
-            </span>
+            </small>
         </div>
     </div>
 

@@ -14,7 +14,7 @@
         <nav class="navigation text-center">
             <ul class="pagination">
                 {% if articles.hasPreviousPage %}
-                    <li class="page-item"><a class="page-link" href="{{ path(paging_area, {page: articles.previousPage}) }}" rel="previous"><i class="fa fw fa-long-arrow-left"></i> Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="{{ path(paging_area, {page: articles.previousPage}) }}" rel="previous"><i class="fa fw fa-arrow-left"></i> Previous</a></li>
                 {% else %}
                     <li class="page-item disabled"><span class="page-link"><i class="fa fw fa-arrow-left"></i> Previous</span></li>
                 {% endif %}

@@ -5,7 +5,7 @@
 {% block body %}
 
     <div>
-        <a href="{{ path('article_list') }}" class="btn btn-primary btn-sm"><i class="fa fa-back"></i> Back to list</a>
+        <a href="{{ path('article_list') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> Back to list</a>
     </div>
 
     {{ include('article/_item.html.twig') }}
@@ -18,7 +18,7 @@
         {% else %}
             <p>
                 <a class="btn btn-success" href="{{ path('fos_user_security_login') }}">
-                    <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+                    <i class="fa fa-sign-in-alt" aria-hidden="true"></i> Login
                 </a>
                 You need to login to post a comment!
             </p>
