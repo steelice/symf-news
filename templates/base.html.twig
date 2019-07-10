@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{% block title %}News!{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between" role="navigation">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path('index') }}">
+                    Newsifieeer
+                </a>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% if app.user %}
+                        <li class="nav-item"><span class="navbar-text"><i
+                                        class="fa fa-user"></i> {{ app.user.email }}</span></li>
+                        <li class="nav-item">
+                            <a href="{{ path('article_list_my') }}" class="nav-link">
+                                <i class="fa fa-list"></i> My news
+                            </a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a href="{{ path('article_create') }}" class="nav-link"><i class="fa fa-edit"></i> Add news</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('fos_user_security_logout') }}" class="nav-link">
+                                <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Logout
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{{ path('fos_user_security_login') }}" class="nav-link">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('fos_user_registration_register') }}" class="nav-link">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+{% endblock %}
+
+<div class="container body-container">
+    {% if app.request.hasPreviousSession %}
+        {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                <div class="alert alert-{{ type }}">
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+
+
+    {% block body %}{% endblock %}
+</div>
+
+{% block footer %}
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div id="footer-copyright" class="col-md-6">
+                    <p>&copy; {{ 'now'|date('Y') }} </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+</body>
+</html>

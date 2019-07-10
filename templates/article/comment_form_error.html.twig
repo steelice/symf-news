@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="alert-danger">We can't add your comment</div>
+
+    <div class="well">
+        {{ include('article/_comment_form.html.twig') }}
+    </div>
+{% endblock %}

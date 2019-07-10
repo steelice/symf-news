@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+
+    <div>
+        <a href="{{ path('article_list') }}" class="btn btn-primary btn-sm"><i class="fa fa-back"></i> Back to list</a>
+    </div>
+
+    {{ include('article/_item.html.twig') }}
+
+    <hr>
+
+    <div id="post-add-comment" class="well">
+        {% if is_granted('ROLE_USER') %}
+            {{ render(controller('App\\Controller\\ArticleController::commentForm', {'id': article.id})) }}
+        {% else %}
+            <p>
+                <a class="btn btn-success" href="{{ path('fos_user_security_login') }}">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+                </a>
+                You need to login to post a comment!
+            </p>
+        {% endif %}
+    </div>
+
+    <h3>
+        <i class="fa fa-comments" aria-hidden="true"></i> Comments:
+    </h3>
+
+    <section class="comments">
+    {% for comment in article.comments %}
+        <div class="row comment">
+            <a name="comment_{{ comment.id }}"></a>
+            <div class="col-sm-3 credentials">
+                <strong>{{ comment.user.username }}</strong> @
+                <strong>{{ comment.createdAt|localizeddate('medium', 'short', null, 'UTC') }}</strong>
+            </div>
+            <div class="col-sm-9">
+                {{ comment.text|nl2br }}
+            </div>
+        </div>
+    {% else %}
+        <div class="comment">
+            <p>No comments yet</p>
+        </div>
+    {% endfor %}
+    </section>
+    
+{% endblock %}

@@ -1,0 +1,12 @@
+$primary: darken(#428bca, 20%);
+
+@import "~bootstrap/scss/bootstrap";
+
+.body-container {
+  margin-top: 1em;
+}
+
+.articles article {
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 1em;
+}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <section class="articles">
+    {% for article in articles.results %}
+        {{ include('article/_item.html.twig') }}
+    {% else %}
+        <div class="well">No articles</div>
+    {% endfor %}
+    </section>
+
+    {% if articles.haveToPaginate %}
+        <nav class="navigation text-center">
+            <ul class="pagination">
+                {% if articles.hasPreviousPage %}
+                    <li class="page-item"><a class="page-link" href="{{ path(paging_area, {page: articles.previousPage}) }}" rel="previous"><i class="fa fw fa-long-arrow-left"></i> Previous</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link"><i class="fa fw fa-arrow-left"></i> Previous</span></li>
+                {% endif %}
+
+                {% for i in 1..articles.numPages %}
+                    {% if i == articles.currentPage %}
+                        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="{{ path(paging_area, {page: i}) }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if articles.hasNextPage %}
+                    <li class="page-item"><a class="page-link" href="{{ path(paging_area, {page: articles.nextPage}) }}" rel="next">Next <i class="fa fw fa-arrow-right"></i></a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Next <i class="fa fw fa-arrow-right"></i></span></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+    
+{% endblock %}

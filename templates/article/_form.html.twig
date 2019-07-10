@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+
+{{ form_widget(form) }}
+
+<button type="submit" class="btn btn-success">
+    <i class="fa fa-check-circle" aria-hidden="true"></i> {{ button_label|default('Create') }}
+</button>
+
+<a href="{{ path('index') }}" class="btn btn-link">
+    <i class="fa fa-list-alt" aria-hidden="true"></i> Back to list
+</a>
+
+{{ form_end(form) }}

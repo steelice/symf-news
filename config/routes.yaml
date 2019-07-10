@@ -1,0 +1,5 @@
+index:
+    path: /
+    controller: \App\Controller\ArticleController::list
+    defaults:
+      page: 1

@@ -1,0 +1,12 @@
+article:
+  created_successfully: Article created successfully
+  deleted: Article deleted
+  blank_content: Content is blank!
+  too_short_content: Content is too short!
+  updated_successfully: Article updated successfully
+label:
+  title: Title
+  content: Content
+comment:
+  too_short: Comment is too short!
+  too_long: Comment is too long!
